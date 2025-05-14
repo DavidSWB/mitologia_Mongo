@@ -1,20 +1,22 @@
-// backend/index.js
-
 const express = require("express");
 const morgan = require("morgan");
-const cors = require("cors"); // ← importante para permitir conexión con el frontend
+const cors = require("cors");
 const app = express();
 
-// Conexión a MongoDB
-require("./db");
+// Conexiones a bases de datos
+require("./db"); // Conexión a MongoDB
+require("./mysqlDB"); // Nueva conexión para MySQL
 
-// Importar todos los controladores
+// Importar controladores
 const diosesController = require("./controllers/diosesController");
 const semidiosesController = require("./controllers/semidiosesController");
 const lugaresController = require("./controllers/lugaresController");
+const monstruosController = require("./controllers/monstruosController");
+const leyendasController = require("./controllers/leyendasController");
+const objetosController = require("./controllers/objetosController");
 
 // Middleware
-app.use(cors()); 
+app.use(cors());
 app.use(morgan("dev"));
 app.use(express.json());
 
@@ -22,6 +24,15 @@ app.use(express.json());
 app.use(diosesController);
 app.use(semidiosesController);
 app.use(lugaresController);
+app.use(monstruosController);
+app.use(leyendasController);
+app.use(objetosController);
+
+// Manejo de errores centralizado
+app.use((err, req, res, next) => {
+  console.error(err.stack);
+  res.status(500).json({ message: "Error interno del servidor" });
+});
 
 // Iniciar servidor
 const PORT = process.env.PORT || 3003;
