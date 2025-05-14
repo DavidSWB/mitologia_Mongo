@@ -24,7 +24,7 @@ app.use(semidiosesController);
 app.use(lugaresController);
 
 // Iniciar servidor
-const PORT = 3003;
+const PORT = process.env.PORT || 3003;
 app.listen(PORT, () => {
   console.log(`🚀 Servidor corriendo en puerto ${PORT}`);
 });
