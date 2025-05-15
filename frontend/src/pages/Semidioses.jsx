@@ -27,13 +27,13 @@ function Semidioses() {
   const [showConfirmar, setShowConfirmar] = useState(false);
 
   const fetchSemidioses = async () => {
-    const res = await fetch("http://localhost:3003/registroDivino/semidioses/obtenerTodos");
+    const res = await fetch("http://mitologia-mongo.onrender.com/registroDivino/semidioses/obtenerTodos");
     const data = await res.json();
     setSemidioses(data);
   };
 
   const agregar = async () => {
-    await fetch("http://localhost:3003/registroDivino/semidioses/agregarSemidios", {
+    await fetch("http://mitologia-mongo.onrender.com/registroDivino/semidioses/agregarSemidios", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(form)
@@ -44,7 +44,7 @@ function Semidioses() {
   };
 
   const actualizar = async () => {
-    await fetch(`http://localhost:3003/registroDivino/semidioses/editarSemidiosPorId/${selected._id}`, {
+    await fetch(`http://mitologia-mongo.onrender.com/registroDivino/semidioses/editarSemidiosPorId/${selected._id}`, {
       method: "PUT",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(form)
@@ -56,7 +56,7 @@ function Semidioses() {
   };
 
   const eliminar = async () => {
-    await fetch(`http://localhost:3003/registroDivino/semidioses/eliminarSemidiosPorId/${selected._id}`, {
+    await fetch(`http://mitologia-mongo.onrender.com/registroDivino/semidioses/eliminarSemidiosPorId/${selected._id}`, {
       method: "DELETE"
     });
     setShowConfirmar(false);

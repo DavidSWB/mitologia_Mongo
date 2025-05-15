@@ -29,7 +29,7 @@ export default function Dioses() {
 
   const fetchDioses = async () => {
     try {
-      const res = await fetch("http://localhost:3003/registroDivino/dioses/obtenerTodos");
+      const res = await fetch("http://mitologia-mongo.onrender.com/registroDivino/dioses/obtenerTodos");
       const data = await res.json();
       setDioses(data);
     } catch (error) {
@@ -39,7 +39,7 @@ export default function Dioses() {
 
   const agregarDios = async () => {
     try {
-      await fetch("http://localhost:3003/registroDivino/dioses/agregarDios", {
+      await fetch("http://mitologia-mongo.onrender.com/registroDivino/dioses/agregarDios", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(form),
@@ -54,7 +54,7 @@ export default function Dioses() {
 
   const actualizarDios = async () => {
     try {
-      await fetch(`http://localhost:3003/registroDivino/dioses/editarDiosPorId/${selected._id}`, {
+      await fetch(`http://mitologia-mongo.onrender.com/registroDivino/dioses/editarDiosPorId/${selected.id_dios}`, {
         method: "PUT",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(form),
@@ -70,7 +70,7 @@ export default function Dioses() {
 
   const eliminarDios = async () => {
     try {
-      await fetch(`http://localhost:3003/registroDivino/dioses/eliminarDiosPorId/${selected._id}`, {
+      await fetch(`http://mitologia-mongo.onrender.com/registroDivino/dioses/eliminarDiosPorId/${selected._id}`, {
         method: "DELETE",
       });
       setShowConfirmar(false);

@@ -26,13 +26,13 @@ function Lugares() {
   const [showConfirmar, setShowConfirmar] = useState(false);
 
   const fetchLugares = async () => {
-    const res = await fetch("http://localhost:3003/registroDivino/lugares/obtenerTodos");
+    const res = await fetch("http://mitologia-mongo.onrender.com/registroDivino/lugares/obtenerTodos");
     const data = await res.json();
     setLugares(data);
   };
 
   const agregar = async () => {
-    await fetch("http://localhost:3003/registroDivino/lugares/agregarLugar", {
+    await fetch("http://mitologia-mongo.onrender.com/registroDivino/lugares/agregarLugar", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(form)
@@ -43,7 +43,7 @@ function Lugares() {
   };
 
   const actualizar = async () => {
-    await fetch(`http://localhost:3003/registroDivino/lugares/editarLugarPorId/${selected._id}`, {
+    await fetch(`http://mitologia-mongo.onrender.com/registroDivino/lugares/editarLugarPorId/${selected._id}`, {
       method: "PUT",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(form)
@@ -55,7 +55,7 @@ function Lugares() {
   };
 
   const eliminar = async () => {
-    await fetch(`http://localhost:3003/registroDivino/lugares/eliminarLugarPorId/${selected._id}`, {
+    await fetch(`http://mitologia-mongo.onrender.com/registroDivino/lugares/eliminarLugarPorId/${selected._id}`, {
       method: "DELETE"
     });
     setShowConfirmar(false);
