@@ -1,6 +1,6 @@
 const mysql = require("mysql2/promise");
 
-let connection;
+let connection = null;
 
 async function connectToMySQL() {
   try {
@@ -14,7 +14,7 @@ async function connectToMySQL() {
       connectionLimit: 10,
       queueLimit: 0,
       ssl: {
-        rejectUnauthorized: false // Necesario para Railway
+        rejectUnauthorized: false
       }
     });
 
@@ -25,10 +25,16 @@ async function connectToMySQL() {
   }
 }
 
+function getConnection() {
+  if (!connection) {
+    throw new Error("La conexión a MySQL no está disponible aún.");
+  }
+  return connection;
+}
+
 module.exports = {
-  getConnection: () => connection,
+  getConnection,
   connectToMySQL
 };
 
-// Conectar inmediatamente
 connectToMySQL();
