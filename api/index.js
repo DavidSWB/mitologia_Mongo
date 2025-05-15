@@ -7,9 +7,9 @@ const app = express();
 
 // ✅ CORS explícito para Vercel
 const corsOptions = {
-  origin: ["https://mitologia-front.vercel.app"],
-  methods: ["GET", "POST", "PUT", "DELETE"],
-  allowedHeaders: ["Content-Type"]
+  origin: "*",
+  methods: "*",
+  allowedHeaders: "*"
 };
 app.use(cors(corsOptions));
 
