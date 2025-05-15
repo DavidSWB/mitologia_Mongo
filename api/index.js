@@ -1,24 +1,32 @@
+// mitologia/api/index.js
 const express = require("express");
 const morgan = require("morgan");
 const cors = require("cors");
+
 const app = express();
 
-// Conexiones a bases de datos
-require("./db"); // Conexión a MongoDB
-require("./mysqlDB"); // Nueva conexión para MySQL
+// ✅ CORS explícito para Vercel
+const corsOptions = {
+  origin: ["https://mitologia-front.vercel.app"],
+  methods: ["GET", "POST", "PUT", "DELETE"],
+  allowedHeaders: ["Content-Type"]
+};
+app.use(cors(corsOptions));
 
-// Importar controladores
+app.use(morgan("dev"));
+app.use(express.json());
+
+// Conexiones a bases de datos
+require("./db"); // MongoDB
+require("./mysqlDB"); // MySQL
+
+// Controladores
 const diosesController = require("./controllers/diosesController");
 const semidiosesController = require("./controllers/semidiosesController");
 const lugaresController = require("./controllers/lugaresController");
 const monstruosController = require("./controllers/monstruosController");
 const leyendasController = require("./controllers/leyendasController");
 const objetosController = require("./controllers/objetosController");
-
-// Middleware
-app.use(cors());
-app.use(morgan("dev"));
-app.use(express.json());
 
 // Rutas
 app.use(diosesController);
